@@ -62,11 +62,8 @@ O domínio planejado é `serralherianeves.com.br` (Registro.br).
 ## Pendências
 
 - [ ] Fotos reais dos trabalhos
-- [ ] Definir o tipo de aquecedor (solar, a gás ou outro) para detalhar o serviço
-- [ ] Confirmar os dias de atendimento (hoje o texto diz só "das 8h às 17h, negociável")
 - [ ] Decidir se vai ter foto do Marcelo
 - [ ] Registrar o domínio e publicar
-- [ ] Criar o perfil da oficina no Google Meu Negócio, para aparecer no Google Maps
 
 ## Contato
 
