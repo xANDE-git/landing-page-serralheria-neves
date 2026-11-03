@@ -16,8 +16,11 @@
   --raio: 14px;
   --lateral: 40px;
   --espaco-secao: 112px;
+  --largura: 1280px;           /* largura máxima do conteúdo */
   /* A "chapa xadrez" (piso de aço) desenhada em SVG. Usada como textura. */
   --chapa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23ffffff' fill-opacity='.07'%3E%3Crect x='3' y='8' width='16' height='5' rx='2.5' transform='rotate(45 11 10.5)'/%3E%3Crect x='25' y='30' width='16' height='5' rx='2.5' transform='rotate(-45 33 32.5)'/%3E%3C/g%3E%3C/svg%3E");
+  /* A mesma chapa, em versão escura e bem fraca, para os fundos claros. */
+  --chapa-clara: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%231A1B1C' fill-opacity='.045'%3E%3Crect x='3' y='8' width='16' height='5' rx='2.5' transform='rotate(45 11 10.5)'/%3E%3Crect x='25' y='30' width='16' height='5' rx='2.5' transform='rotate(-45 33 32.5)'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* ===== BASE ===== */
@@ -25,7 +28,7 @@
 html, body { overflow-x: clip; }
 body {
   margin: 0;
-  background: var(--concreto);
+  background: var(--concreto) var(--chapa-clara);
   color: var(--ferro);
   font-family: var(--fonte-texto);
   font-size: 17px;
@@ -38,12 +41,12 @@ a:focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
 h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; text-transform: uppercase; line-height: 1.02; overflow-wrap: break-word; min-width: 0; }
 h2 { font-size: clamp(40px, 6vw, 72px); }
 
-.secao { max-width: 1160px; margin: 0 auto; padding: var(--espaco-secao) var(--lateral) 0; }
+.secao { max-width: var(--largura); margin: 0 auto; padding: var(--espaco-secao) var(--lateral) 0; }
 
 /* ===== AVISO + TOPO ===== */
 .topo {
   background: var(--ferro); color: #fff;
-  padding: 18px max(var(--lateral), calc((100% - 1160px) / 2 + var(--lateral)));
+  padding: 18px max(var(--lateral), calc((100% - var(--largura)) / 2 + var(--lateral)));
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .marca { font-family: var(--fonte-titulo); font-weight: 700; font-size: 26px; text-transform: uppercase; }
@@ -66,7 +69,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 /* ===== HERO ===== */
 .hero { background: var(--ferro); background-image: var(--chapa); color: #fff; }
 .hero-miolo {
-  max-width: 1160px; margin: 0 auto; padding: 48px var(--lateral) 56px;
+  max-width: var(--largura); margin: 0 auto; padding: 48px var(--lateral) 56px;
   display: flex; flex-wrap: wrap; align-items: center; gap: 48px;
 }
 .hero-texto { flex: 1 1 660px; min-width: 0; }
@@ -81,25 +84,30 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 
 /* ===== FAIXA DE FATOS ===== */
 .fatos-faixa { background: var(--laranja); color: var(--ferro); }
-.fatos-miolo { max-width: 1160px; margin: 0 auto; padding: 0 var(--lateral); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.fatos-miolo { max-width: var(--largura); margin: 0 auto; padding: 0 var(--lateral); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .fatos-miolo li { padding: 28px 24px 28px 0; }
 .fatos-miolo li + li { padding-left: 24px; border-left: 2px solid var(--ferro); }
 .fatos-miolo strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 26px; line-height: 1.1; text-transform: uppercase; }
 .fatos-miolo span { display: block; margin-top: 4px; font-size: 15px; line-height: 1.4; font-weight: 500; }
 
 /* ===== SERVIÇOS ===== */
-.lista { margin-top: 40px; border-bottom: 1px solid var(--linha); }
-.lista li {
-  display: grid; grid-template-columns: 56px minmax(0, 1.3fr) minmax(0, 1fr);
-  align-items: baseline; gap: 8px 24px; padding: 24px 0; border-top: 1px solid var(--linha);
+/* Duas colunas no computador: 01 a 04 na esquerda, 05 a 07 na direita (a lista "desce" em cada coluna). */
+.lista {
+  margin-top: 40px; display: grid; column-gap: 64px;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column;
 }
-.lista .n { font-family: var(--fonte-titulo); font-weight: 600; font-size: 24px; color: var(--laranja-escuro); }
-.lista strong { font-family: var(--fonte-titulo); font-weight: 700; font-size: clamp(26px, 3.2vw, 38px); text-transform: uppercase; line-height: 1.1; }
-.lista li span:last-child { color: var(--texto-suave); font-size: 17px; }
+.lista li {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr);
+  align-content: start; gap: 4px 20px; padding: 26px 0; border-top: 1px solid var(--linha);
+}
+.lista li:nth-child(4), .lista li:last-child { border-bottom: 1px solid var(--linha); }   /* fecha cada coluna com uma linha */
+.lista .n { grid-row: span 2; padding-top: 6px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 24px; color: var(--laranja-escuro); }
+.lista strong { font-family: var(--fonte-titulo); font-weight: 700; font-size: clamp(26px, 2.6vw, 34px); text-transform: uppercase; line-height: 1.1; }
+.lista li span:last-child { grid-column: 2; color: var(--texto-suave); font-size: 17px; }
 
 /* ===== COMO FUNCIONA ===== */
 .faixa-escura { margin-top: var(--espaco-secao); background: var(--ferro); color: #fff; }
-.faixa-miolo { max-width: 1160px; margin: 0 auto; padding: 88px var(--lateral); }
+.faixa-miolo { max-width: var(--largura); margin: 0 auto; padding: 88px var(--lateral); }
 .etapas { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 4px solid var(--laranja); }
 .etapas li { padding: 28px 32px 0 0; }
 .etapas li + li { padding-left: 32px; border-left: 1px solid #44474A; }
@@ -119,9 +127,20 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .foto img { width: 100%; height: 100%; object-fit: cover; display: block; margin: -20px; }
 
 /* ===== QUEM FAZ ===== */
-.quem { display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; }
-.quem h2 { flex: 0 0 420px; }
-.quem p { flex: 1 1 420px; min-width: 0; max-width: 620px; color: var(--texto-suave); font-size: 21px; }
+/* Faixa de ponta a ponta num cinza mais escuro: quebra a sequência de fundo claro liso. */
+.quem-faixa { margin-top: var(--espaco-secao); background: var(--concreto-2); }
+.quem {
+  max-width: var(--largura); margin: 0 auto; padding: 88px var(--lateral);
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 40px 80px; align-items: center;
+}
+.rotulo { margin-bottom: 12px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--laranja-escuro); }
+.quem h2 { margin-bottom: 24px; }
+.quem-texto p:last-child { max-width: 600px; color: var(--texto-suave); font-size: 20px; }
+/* A "ficha" com os três fatos: barra laranja em cima, linhas finas entre os itens */
+.quem-fatos { border-top: 4px solid var(--laranja); }
+.quem-fatos li { padding: 20px 0; border-bottom: 1px solid #C2BDB4; }
+.quem-fatos strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 40px; line-height: 1.05; text-transform: uppercase; }
+.quem-fatos span { display: block; margin-top: 4px; color: var(--texto-suave); font-size: 16px; line-height: 1.4; }
 
 /* ===== CONTATO ===== */
 .contato {
@@ -131,13 +150,33 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .contato-principal { flex: 1 1 420px; min-width: 0; }
 .contato h2 { margin-bottom: 16px; }
 .telefone { margin-bottom: 28px; font-family: var(--fonte-titulo); font-weight: 700; font-size: clamp(40px, 5vw, 64px); line-height: 1.02; white-space: nowrap; }
-.contato-info { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding-left: 32px; border-left: 2px solid var(--ferro); }
-.contato-info dt { font-weight: 500; font-size: 15px; }
-.contato-info dd { font-weight: 600; font-size: 18px; line-height: 1.4; }
+/* As informações viram uma "placa de ferro" escura, com textura de chapa e quatro rebites nos cantos.
+   O escuro dá peso ao lado direito e equilibra o laranja forte. */
+.contato-info {
+  flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column;
+  padding: 34px 36px; border-radius: var(--raio);
+  background-color: var(--ferro);
+  background-image:
+    radial-gradient(circle, #5C5F62 3px, transparent 3.6px),
+    radial-gradient(circle, #5C5F62 3px, transparent 3.6px),
+    radial-gradient(circle, #5C5F62 3px, transparent 3.6px),
+    radial-gradient(circle, #5C5F62 3px, transparent 3.6px),
+    var(--chapa);
+  background-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px, auto;
+  background-position: left top, right top, left bottom, right bottom, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  color: #fff; box-shadow: 0 20px 40px -20px rgba(0,0,0,.5);
+}
+.contato-info div { padding: 14px 0; }
+.contato-info div:first-child { padding-top: 0; }
+.contato-info div:last-child { padding-bottom: 0; }
+.contato-info div + div { border-top: 1px solid #3A3D40; }
+.contato-info dt { font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
+.contato-info dd { margin-top: 2px; font-weight: 500; font-size: 17px; line-height: 1.45; }
 
 /* ===== RODAPÉ ===== */
 .rodape {
-  max-width: 1160px; margin: 0 auto; padding: 48px var(--lateral);
+  max-width: var(--largura); margin: 0 auto; padding: 48px var(--lateral);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px;
   color: var(--texto-suave); font-size: 15px;
 }
@@ -176,13 +215,17 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .fatos-miolo strong { font-size: 22px; }
   .fatos-miolo span { font-size: 13px; }
 
-  .quem { gap: 12px; }
-  .quem h2 { flex: 1 1 100%; }
-  .quem p { font-size: 16px; }
+  .quem { grid-template-columns: 1fr; padding: 48px 16px; gap: 28px; }
+  .quem h2 { margin-bottom: 16px; }
+  .quem-texto p:last-child { font-size: 16px; }
+  .quem-fatos li { padding: 14px 0; }
+  .quem-fatos strong { font-size: 30px; }
+  .quem-fatos span { font-size: 15px; }
 
-  .lista { margin-top: 20px; }
+  .lista { margin-top: 20px; grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+  .lista li:nth-child(4) { border-bottom: 0; }
   .lista li { grid-template-columns: 40px minmax(0, 1fr); padding: 16px 0; gap: 2px 12px; }
-  .lista .n { font-size: 20px; grid-row: span 2; align-self: start; padding-top: 4px; }
+  .lista .n { font-size: 20px; padding-top: 4px; }
   .lista strong { font-size: 26px; }
   .lista li span:last-child { font-size: 15px; }
 
@@ -202,7 +245,8 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .contato { padding: 28px 20px; gap: 24px; border-radius: 20px; }
   .telefone { font-size: 46px; margin-bottom: 20px; }
   .contato .botoes { flex-direction: column; }
-  .contato-info { padding-left: 0; border-left: 0; border-top: 2px solid var(--ferro); padding-top: 16px; flex: 1 1 100%; gap: 12px; }
+  .contato-info { flex: 1 1 100%; padding: 26px 22px; }
+  .contato-info div { padding: 12px 0; }
   .contato-info dd { font-size: 16px; }
   .rodape { padding: 28px 16px 96px; }
 }
