@@ -70,5 +70,5 @@ O domínio planejado é `serralherianeves.com.br` (Registro.br).
 
 ## Contato
 
-Serralheria Neves — Rua Padre José Dias, Centro, São José da Lapa/MG
+Serralheria Neves — Rua Padre José Dias, 350, Centro, São José da Lapa/MG
 WhatsApp e telefone: (31) 99540-4419
