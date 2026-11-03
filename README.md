@@ -1,2 +1,74 @@
-# landing-page-serralheria-neves
-Landing page para a serralheria de Marcelo Neves, contendo o que ele faz, onde ele trabalha e como entrar em contato.
+# Serralheria Neves — Landing page
+
+Landing page da Serralheria Neves, de Marcelo Neves, serralheiro e soldador com mais de 20 anos de oficina em São José da Lapa/MG. O objetivo é simples: o cliente entender o que o serviço faz e pedir orçamento pelo WhatsApp ou por telefone.
+
+Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framework e sem build.
+
+## O que tem na página
+
+- Topo com o nome e o telefone
+- Apresentação com botões de WhatsApp e ligação
+- Faixa com os pontos principais (tempo de oficina, orçamento sem custo, urgência, tipo de cliente)
+- Lista de serviços
+- Como funciona (chama, orçamento, feito)
+- Galeria de trabalhos (ainda com espaços reservados para fotos)
+- Sobre o Marcelo
+- Contato com endereço, região atendida, horário e forma de pagamento
+- Botão flutuante de WhatsApp que acompanha a rolagem
+
+## Tecnologias
+
+- HTML5
+- CSS3 (variáveis CSS, flexbox, grid, `clamp()`, media query para celular)
+- Fontes do Google Fonts: Oswald (títulos) e Archivo (texto)
+
+Sem JavaScript.
+
+## Estrutura
+
+```
+.
+├── index.html   # conteúdo da página
+├── style.css    # todo o visual
+└── README.md
+```
+
+## Como rodar no computador
+
+1. Clone o repositório ou baixe o ZIP.
+2. Abra a pasta no VS Code.
+3. Instale a extensão **Live Server**, clique com o botão direito no `index.html` e escolha **Open with Live Server**.
+
+Também funciona dando dois cliques no `index.html`, para abrir direto no navegador.
+
+## Como editar
+
+- **Textos, serviços, telefone, horário:** `index.html`
+- **Cores, fontes, espaçamentos:** `style.css`. As cores e medidas principais estão no bloco `:root` no começo do arquivo.
+- **WhatsApp:** os botões usam o link `https://wa.me/5531995404419`. Para mudar o número, troque nos links do `index.html`.
+- **Fotos:** nos espaços de foto, troque o bloco reservado por uma tag `<img>` com a foto e um `alt` descrevendo o que aparece. Use fotos reais do trabalho do Marcelo.
+- **Foto do Marcelo:** a seção "Marcelo Neves" está só com texto. Há um comentário no HTML explicando como adicionar uma foto, caso ele aceite.
+
+## Publicação
+
+Por ser um site estático, qualquer hospedagem simples serve:
+
+- Cloudflare Pages
+- Netlify
+- GitHub Pages
+
+O domínio planejado é `serralherianeves.com.br` (Registro.br).
+
+## Pendências
+
+- [ ] Fotos reais dos trabalhos
+- [ ] Definir o tipo de aquecedor (solar, a gás ou outro) para detalhar o serviço
+- [ ] Confirmar os dias de atendimento (hoje o texto diz só "das 8h às 17h, negociável")
+- [ ] Decidir se vai ter foto do Marcelo
+- [ ] Registrar o domínio e publicar
+- [ ] Criar o perfil da oficina no Google Meu Negócio, para aparecer no Google Maps
+
+## Contato
+
+Serralheria Neves — Rua Padre José Dias, Centro, São José da Lapa/MG
+WhatsApp e telefone: (31) 99540-4419
