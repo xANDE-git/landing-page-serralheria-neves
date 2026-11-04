@@ -72,6 +72,8 @@ O domínio planejado é `serralherianeves.com.br` (Registro.br). Quando ele esti
 - [ ] Fotos reais dos trabalhos
 - [ ] Decidir se vai ter foto do Marcelo
 - [ ] Registrar o domínio
+- [ ] Depoimentos de clientes (prints de WhatsApp, com autorização)
+- [ ] CNPJ no rodapé, se houver
 
 ## Contato
 
