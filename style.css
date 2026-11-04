@@ -168,11 +168,13 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .quem-fatos span { display: block; margin-top: 4px; color: var(--ferro); font-size: 16px; line-height: 1.4; }
 
 /* ===== DÚVIDAS FREQUENTES ===== */
-/* Título e botão à esquerda, perguntas à direita. Cada pergunta é um <details>, que abre e fecha sozinho. */
+/* Faixa escura, como o "Como funciona" (usa .faixa-escura e .faixa-miolo).
+   Título e botão à esquerda, perguntas à direita, com barra laranja em cima da lista. */
+#duvidas { background-image: var(--chapa); }
 .duvidas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: 32px 80px; align-items: start; }
-.duvidas-intro p { max-width: 360px; margin: 20px 0 28px; color: var(--texto-suave); font-size: 18px; }
-.faq { border-bottom: 1px solid var(--linha); }
-.faq details { border-top: 1px solid var(--linha); }
+.duvidas-intro p { max-width: 360px; margin: 20px 0 28px; color: var(--texto-no-escuro); font-size: 18px; }
+.faq { border-top: 4px solid var(--laranja); border-bottom: 1px solid var(--linha-escura); }
+.faq details + details { border-top: 1px solid var(--linha-escura); }
 .faq summary {
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
   padding: 22px 0; cursor: pointer; list-style: none;
@@ -180,17 +182,19 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   transition: color .15s;
 }
 .faq summary::-webkit-details-marker { display: none; }
-/* O "+" num círculo escuro, que gira e vira "×" quando a pergunta está aberta */
+/* Setinha laranja (um "V" desenhado com duas bordas) que vira para cima quando a pergunta está aberta */
 .faq summary::after {
-  content: "+"; flex-shrink: 0; display: grid; place-items: center;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--ferro); color: var(--laranja); font-size: 26px; font-weight: 600; line-height: 1;
-  transition: transform .2s;
+  content: ""; flex-shrink: 0; width: 11px; height: 11px; margin: 0 6px 6px 0;
+  border-right: 3px solid var(--laranja); border-bottom: 3px solid var(--laranja);
+  transform: rotate(45deg); transition: transform .26s ease;
 }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq summary:hover { color: var(--laranja-escuro); }
+.faq details[open] summary::after { transform: translateY(6px) rotate(-135deg); }
+.faq details.fechando summary::after { transform: rotate(45deg); }   /* vira de volta assim que começa a fechar */
+.faq summary:hover, .faq details[open] summary { color: var(--laranja); }
+.faq details.fechando summary { color: #fff; }
 .faq summary:focus-visible { outline: 3px solid var(--laranja); outline-offset: 4px; }
-.faq details p { max-width: 620px; padding: 0 60px 24px 0; color: var(--texto-suave); font-size: 17px; }
+.faq-resposta { overflow: hidden; }   /* esconde o texto enquanto a animação encolhe ou cresce a resposta */
+.faq-resposta p { max-width: 620px; padding: 0 60px 24px 0; color: var(--texto-no-escuro); font-size: 17px; }
 
 /* ===== CONTATO ===== */
 .contato {
@@ -332,8 +336,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .duvidas { grid-template-columns: 1fr; gap: 20px; }
   .duvidas-intro p { margin: 12px 0 20px; font-size: 16px; }
   .faq summary { padding: 18px 0; font-size: 20px; gap: 16px; }
-  .faq summary::after { width: 32px; height: 32px; font-size: 22px; }
-  .faq details p { padding: 0 0 20px; font-size: 16px; }
+  .faq-resposta p { padding: 0 0 20px; font-size: 16px; }
 
   .contato { padding: 28px 20px; gap: 24px; border-radius: 20px; }
   /* O tamanho acompanha a largura da tela: em celulares estreitos (360px) o número cabe sem vazar da caixa */

@@ -157,39 +157,39 @@
       </div>
     </section>
 
-    <!-- DÚVIDAS FREQUENTES: cada pergunta abre e fecha ao clicar (sem JavaScript, usando <details>).
-         Para acrescentar uma pergunta, copiar um bloco <details> inteiro e trocar os textos. -->
-    <section class="secao" id="duvidas">
-      <div class="duvidas">
+    <!-- DÚVIDAS FREQUENTES: faixa escura. Cada pergunta abre e fecha ao clicar (<details>), com animação
+         feita pelo script no fim da página. Para acrescentar uma pergunta, copiar um bloco <details> inteiro e trocar os textos. -->
+    <section class="faixa-escura" id="duvidas">
+      <div class="faixa-miolo duvidas">
         <div class="duvidas-intro">
           <h2>Dúvidas frequentes</h2>
           <p>Não achou o que procurava? Pergunte direto para o Marcelo.</p>
-          <a class="botao botao-escuro" href="https://wa.me/5531995404419?text=Ol%C3%A1%2C%20Marcelo!%20Vim%20pelo%20site%20da%20Serralheria%20Neves%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+          <a class="botao botao-contorno" href="https://wa.me/5531995404419?text=Ol%C3%A1%2C%20Marcelo!%20Vim%20pelo%20site%20da%20Serralheria%20Neves%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Perguntar no WhatsApp</a>
         </div>
         <div class="faq">
           <details open>
-            <summary>Ele vai até a minha casa medir?</summary>
-            <p>Sim. O Marcelo vai pessoalmente tirar as medidas, e o orçamento não tem custo.</p>
+            <summary>Vai até a minha casa tirar as medidas?</summary>
+            <div class="faq-resposta"><p>Sim. As medidas são tiradas no local, pessoalmente, e o orçamento não tem custo.</p></div>
           </details>
           <details>
-            <summary>Que tipos de portão ele faz?</summary>
-            <p>De correr, basculante, pivotante e de abrir. Todos sob medida, feitos na oficina.</p>
+            <summary>Quais tipos de portão são feitos?</summary>
+            <div class="faq-resposta"><p>De correr, basculante, pivotante e de abrir. Todos sob medida, feitos na oficina.</p></div>
           </details>
           <details>
             <summary>Instala motor no portão?</summary>
-            <p>Sim. Ele faz a instalação do motor de automação.</p>
+            <div class="faq-resposta"><p>Sim, faz a instalação do motor de automação.</p></div>
           </details>
           <details>
             <summary>O portão já vem pintado?</summary>
-            <p>Sim. O portão é entregue pintado e instalado.</p>
+            <div class="faq-resposta"><p>Sim. O portão é entregue pintado e instalado.</p></div>
           </details>
           <details>
             <summary>Atende fora de São José da Lapa?</summary>
-            <p>Atende Vespasiano e Pedro Leopoldo. Confins, Lagoa Santa e Matozinhos, conforme o serviço.</p>
+            <div class="faq-resposta"><p>Atende Vespasiano e Pedro Leopoldo. Confins, Lagoa Santa e Matozinhos, conforme o serviço.</p></div>
           </details>
           <details>
             <summary>Como é o pagamento?</summary>
-            <p>Pix, ou outra forma combinada direto com ele, conforme o serviço.</p>
+            <div class="faq-resposta"><p>Pix, ou outra forma combinada conforme o serviço.</p></div>
           </details>
         </div>
       </div>
@@ -249,6 +249,46 @@
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.4 7.5L3.5 20.5l1.4-4.4A8.5 8.5 0 1 1 20.5 11.5z"/></svg>
     WhatsApp
   </a>
+
+  <!-- Animação de abrir e fechar as perguntas das Dúvidas frequentes.
+       Sem este script, as perguntas continuam funcionando, só que sem animação. -->
+  <script>
+    document.querySelectorAll('.faq details').forEach(function (item) {
+      var pergunta = item.querySelector('summary');
+      var resposta = item.querySelector('.faq-resposta');
+      var animando = false;
+
+      pergunta.addEventListener('click', function (evento) {
+        // Quem pediu ao sistema para reduzir animações vê a pergunta abrir na hora
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !resposta.animate) return;
+        evento.preventDefault();
+        if (animando) return;
+        animando = true;
+
+        if (item.open) {
+          // Fechando: encolhe a resposta até zero e só então fecha
+          item.classList.add('fechando');
+          var altura = resposta.offsetHeight;
+          resposta.animate(
+            [{ height: altura + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
+            { duration: 260, easing: 'ease' }
+          ).onfinish = function () {
+            item.open = false;
+            item.classList.remove('fechando');
+            animando = false;
+          };
+        } else {
+          // Abrindo: abre e cresce a resposta a partir de zero
+          item.open = true;
+          var alturaFinal = resposta.offsetHeight;
+          resposta.animate(
+            [{ height: '0px', opacity: 0 }, { height: alturaFinal + 'px', opacity: 1 }],
+            { duration: 260, easing: 'ease' }
+          ).onfinish = function () { animando = false; };
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
