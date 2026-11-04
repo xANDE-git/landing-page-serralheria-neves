@@ -8,8 +8,10 @@
   --laranja-escuro: #C2410A;   /* laranja pra texto sobre fundo claro */
   --texto-suave: #4F4C47;
   --texto-no-escuro: #CFCBC4;
-  --linha: #C9C5BD;
+  --linha: #C9C5BD;            /* linhas finas sobre fundo claro */
+  --linha-escura: #3A3D40;     /* linhas finas sobre fundo escuro */
   --verde-zap: #25D366;
+  --verde-zap-hover: #1EBE5B;
   --verde-zap-texto: #0B2A17;
   --fonte-titulo: "Oswald", "Arial Narrow", sans-serif;
   --fonte-texto: "Archivo", system-ui, sans-serif;
@@ -26,6 +28,7 @@
 /* ===== BASE ===== */
 * { box-sizing: border-box; }
 html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }   /* os links do menu rolam a página suavemente até a seção */
 body {
   margin: 0;
   background: var(--concreto) var(--chapa-clara);
@@ -48,7 +51,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   background: var(--ferro); color: #fff;
   padding: 18px max(var(--lateral), calc((100% - var(--largura)) / 2 + var(--lateral)));
   display: flex; align-items: center; gap: 16px 32px;
-  border-bottom: 1px solid #2E3032;     /* separa o topo do hero, que tem a mesma cor */
+  border-bottom: 1px solid var(--linha-escura);     /* separa o topo do hero, que tem a mesma cor */
 }
 .marca { display: block; flex-shrink: 0; }
 .marca img { display: block; height: 40px; width: auto; }
@@ -70,12 +73,15 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 56px; padding: 0 28px; border-radius: 12px;
   font-weight: 600; font-size: 17px;
-  transition: transform .15s, background-color .15s;
+  transition: transform .15s, background-color .15s, color .15s;
 }
 .botao:active { transform: translateY(1px); }
 .botao-zap { background: var(--verde-zap); color: var(--verde-zap-texto); }
+.botao-zap:hover { background: var(--verde-zap-hover); }
 .botao-contorno { border: 2px solid #fff; color: #fff; }
+.botao-contorno:hover { background: #fff; color: var(--ferro); }
 .botao-escuro { background: var(--ferro); color: #fff; }
+.botao-escuro:hover { background: var(--ferro-2); }
 .so-desktop { display: inline; }
 
 /* ===== HERO ===== */
@@ -88,11 +94,11 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .hero h1 { font-size: clamp(52px, 7vw, 92px); margin-bottom: 20px; }
 .hero-texto p { max-width: 480px; margin-bottom: 28px; color: var(--texto-no-escuro); font-size: 20px; }
 .hero-foto {
+  position: relative; overflow: hidden;
   flex: 1 1 320px; min-height: 340px; border-radius: var(--raio);
   background: var(--ferro-2); background-image: var(--chapa);
   display: flex; align-items: flex-end; padding: 20px; color: var(--texto-no-escuro); font-size: 15px; font-weight: 500;
 }
-.hero-foto img { width: 100%; height: 100%; object-fit: cover; margin: -20px; }
 
 /* ===== FAIXA DE FATOS ===== */
 .fatos-faixa { background: var(--laranja); color: var(--ferro); }
@@ -103,7 +109,8 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .fatos-miolo span { display: block; margin-top: 4px; font-size: 15px; line-height: 1.4; font-weight: 500; }
 
 /* ===== SERVIÇOS ===== */
-/* Duas colunas no computador: 01 a 04 na esquerda, 05 a 07 na direita (a lista "desce" em cada coluna). */
+/* Duas colunas no computador: 01 a 04 na esquerda, 05 a 07 na direita (a lista "desce" em cada coluna).
+   Cabem até 8 serviços. Se passar disso, trocar o 4 de "repeat(4, auto)" e o nth-child(4) pela metade do total, arredondada pra cima. */
 .lista {
   margin-top: 40px; display: grid; column-gap: 64px;
   grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column;
@@ -122,7 +129,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .faixa-miolo { max-width: var(--largura); margin: 0 auto; padding: 88px var(--lateral); }
 .etapas { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 4px solid var(--laranja); }
 .etapas li { padding: 28px 32px 0 0; }
-.etapas li + li { padding-left: 32px; border-left: 1px solid #44474A; }
+.etapas li + li { padding-left: 32px; border-left: 1px solid var(--linha-escura); }
 .etapa-numero { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 72px; line-height: 1; color: var(--laranja); }
 .etapas h3 { margin: 8px 0; font-size: 34px; }
 .etapas p { color: var(--texto-no-escuro); font-size: 17px; }
@@ -130,13 +137,15 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 /* ===== TRABALHOS ===== */
 .galeria { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .foto {
+  position: relative; overflow: hidden;
   min-height: 260px; border-radius: var(--raio);
   background: var(--ferro-2); background-image: var(--chapa);
-  display: flex; align-items: flex-end; padding: 20px; overflow: hidden;
+  display: flex; align-items: flex-end; padding: 20px;
 }
 .foto-grande { grid-column: 1 / -1; min-height: 420px; }
-.foto figcaption { color: var(--texto-no-escuro); font-weight: 500; font-size: 15px; }
-.foto img { width: 100%; height: 100%; object-fit: cover; display: block; margin: -20px; }
+.foto figcaption { position: relative; color: var(--texto-no-escuro); font-weight: 500; font-size: 15px; }
+/* Quando entrar uma foto de verdade (<img> dentro do .foto ou do .hero-foto), ela cobre a caixa inteira, até as bordas arredondadas. */
+.foto img, .hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ===== QUEM FAZ ===== */
 /* Faixa de ponta a ponta num cinza mais escuro: quebra a sequência de fundo claro liso. */
@@ -182,7 +191,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .contato-info div { padding: 14px 0; }
 .contato-info div:first-child { padding-top: 0; }
 .contato-info div:last-child { padding-bottom: 0; }
-.contato-info div + div { border-top: 1px solid #3A3D40; }
+.contato-info div + div { border-top: 1px solid var(--linha-escura); }
 .contato-info dt { font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
 .contato-info dd { margin-top: 2px; font-weight: 500; font-size: 17px; line-height: 1.45; }
 .contato-info .obs { display: block; margin-top: 2px; font-size: 15px; color: var(--texto-no-escuro); }   /* observações: menores e mais claras */
@@ -204,17 +213,22 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .rodape-col p { color: #fff; line-height: 1.6; }
 .rodape-col a { border-bottom: 1px solid #55585B; transition: border-color .15s, color .15s; }
 .rodape-col a:hover { color: var(--laranja); border-bottom-color: var(--laranja); }
+/* Linha final. Os dois textos ficam juntos à esquerda: a direita fica livre para o botão flutuante do WhatsApp,
+   que antes cobria o "Voltar ao topo" em notebooks (telas de 1366px, 1440px). */
 .rodape-base {
   max-width: var(--largura); margin: 0 auto; padding: 20px var(--lateral);
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px;
-  border-top: 1px solid #33363A; font-size: 14px; color: #8F8B85;
+  display: flex; flex-wrap: wrap; gap: 8px 32px;
+  border-top: 1px solid var(--linha-escura); font-size: 14px; color: #8F8B85;
 }
 .rodape-base a:hover { color: #fff; }
 
-/* Tela média (tablet, notebook pequeno): esconde o menu para não espremer o topo */
+/* Tela média (tablet, notebook pequeno): esconde o menu para não espremer o topo
+   e passa o rodapé para duas colunas. */
 @media (max-width: 980px) {
   .menu { display: none; }
   .topo-telefone { margin-left: auto; }
+  .rodape-miolo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rodape-marca { grid-column: 1 / -1; }
 }
 
 /* ===== BOTÃO QUE SEGUE NA ROLAGEM ===== */
@@ -224,7 +238,9 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   min-height: 52px; padding: 0 20px; border-radius: 12px;
   background: var(--verde-zap); color: var(--verde-zap-texto);
   font-weight: 600; font-size: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  transition: background-color .15s;
 }
+.zap-flutuante:hover { background: var(--verde-zap-hover); }
 
 /* ===== CELULAR ===== */
 @media (max-width: 760px) {
@@ -266,7 +282,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 
   .faixa-miolo { padding: 48px 16px; }
   .etapas { margin-top: 24px; grid-template-columns: 1fr; }
-  .etapas li, .etapas li + li { padding: 20px 0; border-left: 0; border-top: 1px solid #44474A; display: grid; grid-template-columns: 48px 1fr; gap: 0 12px; }
+  .etapas li, .etapas li + li { padding: 20px 0; border-left: 0; border-top: 1px solid var(--linha-escura); display: grid; grid-template-columns: 48px 1fr; gap: 0 12px; }
   .etapas li:first-child { border-top: 0; }
   .etapa-numero { font-size: 44px; grid-row: span 2; }
   .etapas h3 { font-size: 28px; margin: 0; }
@@ -276,17 +292,24 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .foto { min-height: 150px; padding: 14px; }
   .foto-grande { min-height: 220px; }
 
-
   .contato { padding: 28px 20px; gap: 24px; border-radius: 20px; }
-  .telefone { font-size: 46px; margin-bottom: 20px; }
+  /* O tamanho acompanha a largura da tela: em celulares estreitos (360px) o número cabe sem vazar da caixa */
+  .telefone { font-size: clamp(34px, 11.5vw, 46px); margin-bottom: 20px; }
   .contato .botoes { flex-direction: column; }
   .contato-info { flex: 1 1 100%; padding: 26px 22px; }
   .contato-info div { padding: 12px 0; }
   .contato-info dd { font-size: 16px; }
-  .rodape-miolo { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 44px 16px 32px; gap: 28px 20px; }
-  .rodape-marca { grid-column: 1 / -1; }
+  .rodape-miolo { padding: 44px 16px 32px; gap: 28px 20px; }
+  .rodape-col:nth-child(2) { grid-column: 1 / -1; }   /* o endereço ocupa a linha inteira, sem quebrar no meio */
   .rodape-marca img { height: 32px; }
   .rodape-base { padding: 18px 16px 96px; }   /* espaço embaixo para o botão flutuante não cobrir o texto */
 }
 
-@media (prefers-reduced-motion: reduce) { .botao { transition: none; } }
+/* Para quem configurou o sistema para reduzir animações: sem rolagem suave e sem transições */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+
+/* Trecho que nunca deve ser dividido em duas linhas (ex.: "350 – Centro") */
+.sem-quebra { white-space: nowrap; }

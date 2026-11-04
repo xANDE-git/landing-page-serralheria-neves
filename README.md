@@ -38,7 +38,8 @@ Sem JavaScript.
 ├── img/
 │   ├── logo-fundo-claro.svg    # logo para fundos claros
 │   ├── logo-fundo-escuro.svg   # logo para fundos escuros (topo e rodapé do site)
-│   └── favicon.svg             # ícone da aba do navegador
+│   ├── favicon.svg             # ícone da aba do navegador
+│   └── compartilhar.png        # imagem de prévia ao compartilhar o link (1200x630)
 └── README.md
 ```
 
@@ -55,24 +56,22 @@ Também funciona dando dois cliques no `index.html`, para abrir direto no navega
 - **Textos, serviços, telefone, horário:** `index.html`
 - **Cores, fontes, espaçamentos:** `style.css`. As cores e medidas principais estão no bloco `:root` no começo do arquivo.
 - **WhatsApp:** os botões usam o link `https://wa.me/5531995404419`. Para mudar o número, troque nos links do `index.html`.
-- **Fotos:** nos espaços de foto, troque o bloco reservado por uma tag `<img>` com a foto e um `alt` descrevendo o que aparece. Use fotos reais do trabalho do Marcelo.
+- **Fotos:** em cada caixa de foto, troque o texto reservado (`<figcaption>`) por uma tag `<img>` com a foto e um `alt` descrevendo o que aparece. A foto preenche a caixa sozinha. Use fotos reais do trabalho do Marcelo.
 - **Foto do Marcelo:** a seção "Marcelo Neves" está só com texto. Há um comentário no HTML explicando como adicionar uma foto, caso ele aceite.
 
 ## Publicação
 
-Por ser um site estático, qualquer hospedagem simples serve:
+O site está publicado no Cloudflare (Workers), ligado a este repositório: cada envio para a branch `main` atualiza o site sozinho em um ou dois minutos.
 
-- Cloudflare Pages
-- Netlify
-- GitHub Pages
+Endereço provisório: https://serralheria-neves.xandemartinsc.workers.dev
 
-O domínio planejado é `serralherianeves.com.br` (Registro.br).
+O domínio planejado é `serralherianeves.com.br` (Registro.br). Quando ele estiver no ar, trocar o endereço provisório nas tags `og:url`, `og:image` e no bloco `application/ld+json` do `index.html`.
 
 ## Pendências
 
 - [ ] Fotos reais dos trabalhos
 - [ ] Decidir se vai ter foto do Marcelo
-- [ ] Registrar o domínio e publicar
+- [ ] Registrar o domínio
 
 ## Contato
 
