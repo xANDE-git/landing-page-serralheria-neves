@@ -1,0 +1,41 @@
+# Cabeçalhos que o Cloudflare envia junto com cada arquivo do site.
+# Eles não aparecem na página, mas dizem ao navegador o que é permitido e por quanto tempo guardar cada arquivo.
+# Documentação: https://developers.cloudflare.com/workers/static-assets/headers/
+
+# --- Segurança, para todas as páginas ---
+# Content-Security-Policy: só aceita scripts, estilos, fontes e imagens vindos do próprio site
+#   (imagens "data:" são as texturas de chapa desenhadas dentro do style.css).
+#   Se um dia entrar Google Analytics, Cloudflare Web Analytics, mapa embutido ou vídeo do YouTube,
+#   é preciso liberar o endereço deles aqui, senão eles são bloqueados.
+# X-Content-Type-Options: o navegador não tenta "adivinhar" o tipo de arquivo.
+# X-Frame-Options + frame-ancestors: ninguém consegue exibir o site dentro de outro site (golpe de "clique falso").
+# Referrer-Policy: ao clicar num link externo (WhatsApp, Google Maps), só o endereço do site é informado, não a página inteira.
+# Permissions-Policy: o site não pede câmera, microfone nem localização.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# --- Cache (quanto tempo o navegador guarda cada arquivo) ---
+# HTML, CSS e JS ficam com o padrão do Cloudflare: o navegador confere se mudou a cada visita,
+# então qualquer atualização aparece na hora.
+
+# Fontes nunca mudam: guarda por 1 ano.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens: guarda por 7 dias. Ao TROCAR uma foto, use um nome de arquivo novo
+# (ex.: portao-2.jpg) para todo mundo ver a nova na hora.
+/img/*
+  Cache-Control: public, max-age=604800
+
+/fotos/*
+  Cache-Control: public, max-age=604800
+
+# --- Endereço provisório (workers.dev) ---
+# TODO (domínio): quando o serralherianeves.com.br estiver no ar, apague o "#" das duas linhas abaixo.
+# Assim o Google para de mostrar o endereço provisório e fica só com o domínio.
+# https://serralheria-neves.xandemartinsc.workers.dev/*
+#   X-Robots-Tag: noindex
