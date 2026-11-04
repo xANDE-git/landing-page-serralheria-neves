@@ -15,8 +15,8 @@ Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framewo
 - Apresentação com botões de WhatsApp e ligação
 - Faixa com os pontos principais (tempo de oficina, orçamento sem custo, urgência, tipo de cliente)
 - Lista de serviços
-- Como funciona (chama, orçamento, feito)
-- Galeria de trabalhos (ainda com espaços reservados para fotos)
+- Como funciona (pedido, orçamento, instalação)
+- Trabalhos realizados (ainda com espaços reservados para fotos)
 - Sobre o Marcelo
 - Dúvidas frequentes (visita para medir, tipos de portão, motor, pintura, cidades atendidas)
 - Contato com endereço, região atendida, horário e forma de pagamento
