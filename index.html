@@ -57,9 +57,9 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fontes hospedadas no próprio site (pasta fonts/): o navegador já começa a baixá-las junto com a página -->
+  <link rel="preload" href="fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Ícones: .ico para navegadores antigos, SVG para os atuais, PNG para o atalho na tela do iPhone -->
   <link rel="icon" href="favicon.ico" sizes="32x32 48x48">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -260,45 +260,8 @@
     WhatsApp
   </a>
 
-  <!-- Animação de abrir e fechar as perguntas das Dúvidas frequentes.
-       Sem este script, as perguntas continuam funcionando, só que sem animação. -->
-  <script>
-    document.querySelectorAll('.faq details').forEach(function (item) {
-      var pergunta = item.querySelector('summary');
-      var resposta = item.querySelector('.faq-resposta');
-      var animando = false;
-
-      pergunta.addEventListener('click', function (evento) {
-        // Quem pediu ao sistema para reduzir animações vê a pergunta abrir na hora
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !resposta.animate) return;
-        evento.preventDefault();
-        if (animando) return;
-        animando = true;
-
-        if (item.open) {
-          // Fechando: encolhe a resposta até zero e só então fecha
-          item.classList.add('fechando');
-          var altura = resposta.offsetHeight;
-          resposta.animate(
-            [{ height: altura + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
-            { duration: 260, easing: 'ease' }
-          ).onfinish = function () {
-            item.open = false;
-            item.classList.remove('fechando');
-            animando = false;
-          };
-        } else {
-          // Abrindo: abre e cresce a resposta a partir de zero
-          item.open = true;
-          var alturaFinal = resposta.offsetHeight;
-          resposta.animate(
-            [{ height: '0px', opacity: 0 }, { height: alturaFinal + 'px', opacity: 1 }],
-            { duration: 260, easing: 'ease' }
-          ).onfinish = function () { animando = false; };
-        }
-      });
-    });
-  </script>
+  <!-- Animação das Dúvidas frequentes (arquivo script.js) -->
+  <script src="script.js"></script>
 
 </body>
 </html>
