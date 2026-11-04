@@ -1,0 +1,9 @@
+# Arquivos do projeto que NÃO são enviados para o site público
+# (mesmo formato do .gitignore). Tudo o que não está aqui fica acessível na internet.
+.git
+.gitignore
+.assetsignore
+.wrangler
+wrangler.jsonc
+README.md
+node_modules

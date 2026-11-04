@@ -295,6 +295,12 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .rodape-titulo { min-height: 0; margin-bottom: 10px; }   /* aqui o logo fica sozinho na linha de cima, não precisa alinhar */
 }
 
+/* ===== PÁGINA 404 (404.html): o bloco escuro ocupa a tela toda ===== */
+.pagina-erro { background: var(--ferro); }
+.pagina-erro .hero { min-height: calc(100vh - 77px); display: flex; align-items: center; }
+.pagina-erro .hero-miolo { width: 100%; }
+.pagina-erro .rotulo { color: var(--laranja); }
+
 /* ===== BOTÃO QUE SEGUE NA ROLAGEM ===== */
 .zap-flutuante {
   position: fixed; right: 16px; bottom: 16px; z-index: 50;
