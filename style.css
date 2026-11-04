@@ -111,7 +111,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .fatos-miolo span { display: block; margin-top: 4px; font-size: 15px; line-height: 1.4; font-weight: 500; }
 
 /* ===== SERVIÇOS ===== */
-/* Duas colunas no computador: 01 a 04 na esquerda, 05 a 07 na direita (a lista "desce" em cada coluna).
+/* Duas colunas no computador: 01 a 04 na esquerda, 05 a 08 na direita (a lista "desce" em cada coluna).
    Cabem até 8 serviços. Se passar disso, trocar o 4 de "repeat(4, auto)" e o nth-child(4) pela metade do total, arredondada pra cima. */
 .lista {
   margin-top: 40px; display: grid; column-gap: 64px;
@@ -166,6 +166,31 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .quem-fatos li { padding: 20px 0; border-bottom: 1px solid var(--linha-media); }
 .quem-fatos strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 40px; line-height: 1.05; text-transform: uppercase; color: var(--laranja-escuro); }
 .quem-fatos span { display: block; margin-top: 4px; color: var(--ferro); font-size: 16px; line-height: 1.4; }
+
+/* ===== DÚVIDAS FREQUENTES ===== */
+/* Título e botão à esquerda, perguntas à direita. Cada pergunta é um <details>, que abre e fecha sozinho. */
+.duvidas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: 32px 80px; align-items: start; }
+.duvidas-intro p { max-width: 360px; margin: 20px 0 28px; color: var(--texto-suave); font-size: 18px; }
+.faq { border-bottom: 1px solid var(--linha); }
+.faq details { border-top: 1px solid var(--linha); }
+.faq summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 22px 0; cursor: pointer; list-style: none;
+  font-family: var(--fonte-titulo); font-weight: 700; font-size: clamp(20px, 2vw, 26px); line-height: 1.15; text-transform: uppercase;
+  transition: color .15s;
+}
+.faq summary::-webkit-details-marker { display: none; }
+/* O "+" num círculo escuro, que gira e vira "×" quando a pergunta está aberta */
+.faq summary::after {
+  content: "+"; flex-shrink: 0; display: grid; place-items: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--ferro); color: var(--laranja); font-size: 26px; font-weight: 600; line-height: 1;
+  transition: transform .2s;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:hover { color: var(--laranja-escuro); }
+.faq summary:focus-visible { outline: 3px solid var(--laranja); outline-offset: 4px; }
+.faq details p { max-width: 620px; padding: 0 60px 24px 0; color: var(--texto-suave); font-size: 17px; }
 
 /* ===== CONTATO ===== */
 .contato {
@@ -303,6 +328,12 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .galeria { margin-top: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .foto { min-height: 150px; padding: 14px; }
   .foto-grande { min-height: 220px; }
+
+  .duvidas { grid-template-columns: 1fr; gap: 20px; }
+  .duvidas-intro p { margin: 12px 0 20px; font-size: 16px; }
+  .faq summary { padding: 18px 0; font-size: 20px; gap: 16px; }
+  .faq summary::after { width: 32px; height: 32px; font-size: 22px; }
+  .faq details p { padding: 0 0 20px; font-size: 16px; }
 
   .contato { padding: 28px 20px; gap: 24px; border-radius: 20px; }
   /* O tamanho acompanha a largura da tela: em celulares estreitos (360px) o número cabe sem vazar da caixa */
