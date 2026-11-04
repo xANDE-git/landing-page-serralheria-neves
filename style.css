@@ -43,14 +43,26 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 
 .secao { max-width: var(--largura); margin: 0 auto; padding: var(--espaco-secao) var(--lateral) 0; }
 
-/* ===== AVISO + TOPO ===== */
+/* ===== TOPO: logo, menu e telefone ===== */
 .topo {
   background: var(--ferro); color: #fff;
   padding: 18px max(var(--lateral), calc((100% - var(--largura)) / 2 + var(--lateral)));
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  display: flex; align-items: center; gap: 16px 32px;
+  border-bottom: 1px solid #2E3032;     /* separa o topo do hero, que tem a mesma cor */
 }
-.marca { font-family: var(--fonte-titulo); font-weight: 700; font-size: 26px; text-transform: uppercase; }
-.topo-telefone { font-weight: 600; font-size: 18px; }
+.marca { display: block; flex-shrink: 0; }
+.marca img { display: block; height: 40px; width: auto; }
+.menu { display: flex; gap: 28px; margin-left: auto; font-size: 15px; font-weight: 500; color: var(--texto-no-escuro); }
+.menu a { padding: 6px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+.menu a:hover { color: #fff; border-bottom-color: var(--laranja); }
+.topo-telefone {
+  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  padding: 9px 16px; border: 1.5px solid var(--laranja); border-radius: 10px;
+  font-weight: 600; font-size: 16px; transition: background-color .15s, color .15s;
+}
+.topo-telefone svg { color: var(--laranja); transition: color .15s; }
+.topo-telefone:hover { background: var(--laranja); color: var(--ferro); }
+.topo-telefone:hover svg { color: var(--ferro); }
 
 /* ===== BOTÕES ===== */
 .botoes { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -174,13 +186,35 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .contato-info dt { font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
 .contato-info dd { margin-top: 2px; font-weight: 500; font-size: 17px; line-height: 1.45; }
 
-/* ===== RODAPÉ ===== */
+/* ===== RODAPÉ: faixa escura com logo e informações em colunas ===== */
 .rodape {
-  max-width: var(--largura); margin: 0 auto; padding: 48px var(--lateral);
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px;
-  color: var(--texto-suave); font-size: 15px;
+  margin-top: var(--espaco-secao);
+  background: var(--ferro); background-image: var(--chapa);
+  border-top: 4px solid var(--laranja);
+  color: var(--texto-no-escuro); font-size: 15px;
 }
-.rodape strong { color: var(--ferro); }
+.rodape-miolo {
+  max-width: var(--largura); margin: 0 auto; padding: 64px var(--lateral) 48px;
+  display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 32px 48px;
+}
+.rodape-marca img { display: block; height: 40px; width: auto; margin-bottom: 18px; }
+.rodape-marca p { max-width: 340px; line-height: 1.55; }
+.rodape-titulo { display: block; margin-bottom: 10px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
+.rodape-col p { color: #fff; line-height: 1.6; }
+.rodape-col a { border-bottom: 1px solid #55585B; transition: border-color .15s, color .15s; }
+.rodape-col a:hover { color: var(--laranja); border-bottom-color: var(--laranja); }
+.rodape-base {
+  max-width: var(--largura); margin: 0 auto; padding: 20px var(--lateral);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px;
+  border-top: 1px solid #33363A; font-size: 14px; color: #8F8B85;
+}
+.rodape-base a:hover { color: #fff; }
+
+/* Tela média (tablet, notebook pequeno): esconde o menu para não espremer o topo */
+@media (max-width: 980px) {
+  .menu { display: none; }
+  .topo-telefone { margin-left: auto; }
+}
 
 /* ===== BOTÃO QUE SEGUE NA ROLAGEM ===== */
 .zap-flutuante {
@@ -198,7 +232,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   h2 { font-size: 40px; }
   .so-desktop { display: none; }
   .topo { padding: 14px 16px; }
-  .marca { font-size: 22px; }
+  .marca img { height: 30px; }
   .topo-telefone { display: none; }          /* o botão flutuante já resolve no celular */
 
   .hero-miolo { padding: 40px 16px 44px; gap: 28px; }
@@ -248,7 +282,10 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .contato-info { flex: 1 1 100%; padding: 26px 22px; }
   .contato-info div { padding: 12px 0; }
   .contato-info dd { font-size: 16px; }
-  .rodape { padding: 28px 16px 96px; }
+  .rodape-miolo { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 44px 16px 32px; gap: 28px 20px; }
+  .rodape-marca { grid-column: 1 / -1; }
+  .rodape-marca img { height: 32px; }
+  .rodape-base { padding: 18px 16px 96px; }   /* espaço embaixo para o botão flutuante não cobrir o texto */
 }
 
 @media (prefers-reduced-motion: reduce) { .botao { transition: none; } }

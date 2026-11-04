@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/logo-fundo-escuro.svg">
+  <img src="img/logo-fundo-claro.svg" alt="Serralheria Neves" width="380">
+</picture>
+
 # Serralheria Neves — Landing page
 
 Landing page da Serralheria Neves, de Marcelo Neves, serralheiro e soldador com mais de 20 anos de oficina em São José da Lapa/MG. O objetivo é simples: o cliente entender o que o serviço faz e pedir orçamento pelo WhatsApp ou por telefone.
@@ -30,6 +35,10 @@ Sem JavaScript.
 .
 ├── index.html   # conteúdo da página
 ├── style.css    # todo o visual
+├── img/
+│   ├── logo-fundo-claro.svg    # logo para fundos claros
+│   ├── logo-fundo-escuro.svg   # logo para fundos escuros (topo e rodapé do site)
+│   └── favicon.svg             # ícone da aba do navegador
 └── README.md
 ```
 
