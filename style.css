@@ -58,7 +58,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .marca { display: block; flex-shrink: 0; }
 .marca img { display: block; height: 40px; width: auto; }
 .menu { display: flex; gap: 28px; margin-left: auto; font-size: 15px; font-weight: 500; color: var(--texto-no-escuro); }
-.menu a { padding: 6px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+.menu a { white-space: nowrap; padding: 6px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
 .menu a:hover { color: #fff; border-bottom-color: var(--laranja); }
 .topo-telefone {
   display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
@@ -190,7 +190,9 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 }
 .faq details[open] summary::after { transform: translateY(6px) rotate(-135deg); }
 .faq details.fechando summary::after { transform: rotate(45deg); }   /* vira de volta assim que começa a fechar */
-.faq summary:hover, .faq details[open] summary { color: var(--laranja); }
+.faq details[open] summary { color: var(--laranja); }
+/* O efeito de passar o mouse só vale onde existe mouse: em tela de toque ele "grudava" depois do toque */
+@media (hover: hover) { .faq summary:hover { color: var(--laranja); } }
 .faq details.fechando summary { color: #fff; }
 .faq summary:focus-visible { outline: 3px solid var(--laranja); outline-offset: 4px; }
 .faq-resposta { overflow: hidden; }   /* esconde o texto enquanto a animação encolhe ou cresce a resposta */
@@ -260,11 +262,15 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 }
 .rodape-base a:hover { color: #fff; }
 
-/* Tela média (tablet, notebook pequeno): esconde o menu para não espremer o topo
-   e passa o rodapé para duas colunas. */
-@media (max-width: 980px) {
+/* Notebook pequeno: com 5 itens, o menu só cabe numa linha a partir de 1100px. Abaixo disso ele some
+   (o botão de telefone e o flutuante do WhatsApp continuam). */
+@media (max-width: 1100px) {
   .menu { display: none; }
   .topo-telefone { margin-left: auto; }
+}
+
+/* Tela média (tablet): rodapé em duas colunas. */
+@media (max-width: 980px) {
   .rodape-miolo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rodape-marca { grid-column: 1 / -1; }
   .rodape-titulo { min-height: 0; margin-bottom: 10px; }   /* aqui o logo fica sozinho na linha de cima, não precisa alinhar */

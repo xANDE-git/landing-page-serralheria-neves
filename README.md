@@ -18,6 +18,7 @@ Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framewo
 - Como funciona (chama, orçamento, feito)
 - Galeria de trabalhos (ainda com espaços reservados para fotos)
 - Sobre o Marcelo
+- Dúvidas frequentes (visita para medir, tipos de portão, motor, pintura, cidades atendidas)
 - Contato com endereço, região atendida, horário e forma de pagamento
 - Botão flutuante de WhatsApp que acompanha a rolagem
 
@@ -27,7 +28,7 @@ Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framewo
 - CSS3 (variáveis CSS, flexbox, grid, `clamp()`, media query para celular)
 - Fontes do Google Fonts: Oswald (títulos) e Archivo (texto)
 
-Sem JavaScript.
+JavaScript só num pequeno script no fim do `index.html`, que anima o abrir e fechar das Dúvidas frequentes. Sem ele, as perguntas continuam funcionando, só sem animação.
 
 ## Estrutura
 
@@ -54,6 +55,7 @@ Também funciona dando dois cliques no `index.html`, para abrir direto no navega
 ## Como editar
 
 - **Textos, serviços, telefone, horário:** `index.html`
+- **Dúvidas frequentes:** para acrescentar uma pergunta, copie um bloco `<details>` inteiro na seção "Dúvidas frequentes" do `index.html` e troque os textos.
 - **Cores, fontes, espaçamentos:** `style.css`. As cores e medidas principais estão no bloco `:root` no começo do arquivo.
 - **WhatsApp:** os botões usam o link `https://wa.me/5531995404419`. Para mudar o número, troque nos links do `index.html`.
 - **Fotos:** em cada caixa de foto, troque o texto reservado (`<figcaption>`) por uma tag `<img>` com a foto e um `alt` descrevendo o que aparece. A foto preenche a caixa sozinha. Use fotos reais do trabalho do Marcelo.
