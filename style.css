@@ -185,6 +185,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .contato-info div + div { border-top: 1px solid #3A3D40; }
 .contato-info dt { font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
 .contato-info dd { margin-top: 2px; font-weight: 500; font-size: 17px; line-height: 1.45; }
+.contato-info .obs { display: block; margin-top: 2px; font-size: 15px; color: var(--texto-no-escuro); }   /* observações: menores e mais claras */
 
 /* ===== RODAPÉ: faixa escura com logo e informações em colunas ===== */
 .rodape {
