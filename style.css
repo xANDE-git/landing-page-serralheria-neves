@@ -320,7 +320,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   h2 { font-size: 40px; }
   .so-desktop { display: none; }
   .topo { padding: 14px 16px; }
-  .marca img { height: 30px; }
+  .marca img { height: 36px; }
   .topo-telefone { display: none; }          /* o botão flutuante já resolve no celular */
 
   .hero-miolo { padding: 40px 16px 44px; gap: 28px; }
@@ -379,7 +379,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .contato-info dd { font-size: 16px; }
   .rodape-miolo { padding: 44px 16px 32px; gap: 28px 20px; }
   .rodape-col:nth-child(2) { grid-column: 1 / -1; }   /* o endereço ocupa a linha inteira, sem quebrar no meio */
-  .rodape-marca img { height: 32px; }
+  .rodape-marca img { height: 36px; }
   .rodape-base { padding: 18px 16px 96px; }   /* espaço embaixo para o botão flutuante não cobrir o texto */
 }
 

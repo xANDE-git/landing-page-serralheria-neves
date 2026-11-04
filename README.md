@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/logo-fundo-escuro.svg">
-  <img src="img/logo-fundo-claro.svg" alt="Serralheria Neves" width="380">
+  <img src="img/logo-fundo-claro.svg" alt="Serralheria Neves" width="321">
 </picture>
 
 # Serralheria Neves — Landing page
