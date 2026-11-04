@@ -5,7 +5,7 @@
   --concreto: #ECEAE6;         /* fundo claro, cinza quente */
   --concreto-2: #DEDBD5;
   --laranja: #FF6B1A;          /* laranja de segurança: a única cor forte */
-  --laranja-escuro: #C2410A;   /* laranja pra texto sobre fundo claro */
+  --laranja-escuro: #A83808;   /* laranja pra texto sobre fundo claro (escuro o bastante para leitura fácil, WCAG AA) */
   --texto-suave: #4F4C47;
   --texto-no-escuro: #CFCBC4;
   --linha: #C9C5BD;            /* linhas finas sobre fundo claro */
@@ -45,6 +45,13 @@ a:focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
 h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; text-transform: uppercase; line-height: 1.02; overflow-wrap: break-word; min-width: 0; }
 h2 { font-size: clamp(40px, 6vw, 72px); }
 .sem-quebra { white-space: nowrap; }   /* trecho que nunca deve ser dividido em duas linhas (ex.: "350 – Centro") */
+
+/* Link "Pular para o conteúdo": invisível até alguém navegar pelo teclado (Tab) */
+.pular {
+  position: absolute; left: 16px; top: -100px; z-index: 100;
+  padding: 12px 18px; border-radius: 8px; background: var(--laranja); color: var(--ferro); font-weight: 600;
+}
+.pular:focus { top: 16px; }
 
 .secao { max-width: var(--largura); margin: 0 auto; padding: var(--espaco-secao) var(--lateral) 0; }
 
