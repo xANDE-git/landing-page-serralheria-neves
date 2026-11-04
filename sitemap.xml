@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lista das páginas do site para os buscadores.
+     TODO (domínio): trocar o endereço abaixo pelo domínio próprio.
+     Atualize a data (lastmod) quando fizer uma mudança grande no conteúdo. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://serralheria-neves.xandemartinsc.workers.dev/</loc>
+    <lastmod>2026-11-04</lastmod>
+  </url>
+</urlset>

@@ -1,0 +1,6 @@
+# Libera todos os buscadores para ler o site inteiro.
+User-agent: *
+Allow: /
+
+# TODO (domínio): trocar pelo endereço do domínio próprio.
+Sitemap: https://serralheria-neves.xandemartinsc.workers.dev/sitemap.xml
