@@ -179,7 +179,8 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 /* Barra laranja grossa à esquerda do texto, como um cordão de solda */
 .quem-texto { border-left: 6px solid var(--laranja); padding-left: 36px; }
 .quem h2 { margin-bottom: 24px; }
-.quem-texto p:last-child { max-width: 600px; color: var(--ferro); font-size: 20px; }   /* texto mais escuro: menos "cinza sobre cinza" */
+.quem-texto p:last-of-type { max-width: 600px; color: var(--ferro); font-size: 20px; }   /* texto mais escuro: menos "cinza sobre cinza" */
+.quem-foto { margin-top: 28px; }   /* foto do Marcelo, se entrar (ver comentário no index.html) */
 /* A "ficha" com os três fatos: barra laranja em cima, títulos em laranja, linhas finas entre os itens */
 .quem-fatos { border-top: 4px solid var(--laranja); }
 .quem-fatos li { padding: 20px 0; border-bottom: 1px solid var(--linha-media); }
