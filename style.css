@@ -9,6 +9,7 @@
   --texto-suave: #4F4C47;
   --texto-no-escuro: #CFCBC4;
   --linha: #C9C5BD;            /* linhas finas sobre fundo claro */
+  --linha-media: #C2BDB4;      /* linhas finas sobre o cinza mais escuro (seção "Quem faz") */
   --linha-escura: #3A3D40;     /* linhas finas sobre fundo escuro */
   --verde-zap: #25D366;
   --verde-zap-hover: #1EBE5B;
@@ -43,6 +44,7 @@ a { color: inherit; text-decoration: none; }
 a:focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
 h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; text-transform: uppercase; line-height: 1.02; overflow-wrap: break-word; min-width: 0; }
 h2 { font-size: clamp(40px, 6vw, 72px); }
+.sem-quebra { white-space: nowrap; }   /* trecho que nunca deve ser dividido em duas linhas (ex.: "350 – Centro") */
 
 .secao { max-width: var(--largura); margin: 0 auto; padding: var(--espaco-secao) var(--lateral) 0; }
 
@@ -161,7 +163,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .quem-texto p:last-child { max-width: 600px; color: var(--ferro); font-size: 20px; }   /* texto mais escuro: menos "cinza sobre cinza" */
 /* A "ficha" com os três fatos: barra laranja em cima, títulos em laranja, linhas finas entre os itens */
 .quem-fatos { border-top: 4px solid var(--laranja); }
-.quem-fatos li { padding: 20px 0; border-bottom: 1px solid #C2BDB4; }
+.quem-fatos li { padding: 20px 0; border-bottom: 1px solid var(--linha-media); }
 .quem-fatos strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 40px; line-height: 1.05; text-transform: uppercase; color: var(--laranja-escuro); }
 .quem-fatos span { display: block; margin-top: 4px; color: var(--ferro); font-size: 16px; line-height: 1.4; }
 
@@ -197,6 +199,8 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .contato-info dt { font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
 .contato-info dd { margin-top: 2px; font-weight: 500; font-size: 17px; line-height: 1.45; }
 .contato-info .obs { display: block; margin-top: 2px; font-size: 15px; color: var(--texto-no-escuro); }   /* observações: menores e mais claras */
+.contato-info .mapa { display: table; margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--laranja); border-bottom: 1px solid transparent; transition: border-color .15s; }
+.contato-info .mapa:hover { border-bottom-color: var(--laranja); }
 
 /* ===== RODAPÉ: faixa escura com logo e informações em colunas ===== */
 .rodape {
@@ -317,6 +321,3 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
-
-/* Trecho que nunca deve ser dividido em duas linhas (ex.: "350 – Centro") */
-.sem-quebra { white-space: nowrap; }
