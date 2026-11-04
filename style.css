@@ -148,20 +148,22 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 .foto img, .hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ===== QUEM FAZ ===== */
-/* Faixa de ponta a ponta num cinza mais escuro: quebra a sequência de fundo claro liso. */
-.quem-faixa { margin-top: var(--espaco-secao); background: var(--concreto-2); }
+/* Faixa de ponta a ponta num cinza mais escuro, com a mesma textura de chapa do resto do fundo claro. */
+.quem-faixa { margin-top: var(--espaco-secao); background: var(--concreto-2) var(--chapa-clara); }
 .quem {
   max-width: var(--largura); margin: 0 auto; padding: 88px var(--lateral);
   display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 40px 80px; align-items: center;
 }
 .rotulo { margin-bottom: 12px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--laranja-escuro); }
+/* Barra laranja grossa à esquerda do texto, como um cordão de solda */
+.quem-texto { border-left: 6px solid var(--laranja); padding-left: 36px; }
 .quem h2 { margin-bottom: 24px; }
-.quem-texto p:last-child { max-width: 600px; color: var(--texto-suave); font-size: 20px; }
-/* A "ficha" com os três fatos: barra laranja em cima, linhas finas entre os itens */
+.quem-texto p:last-child { max-width: 600px; color: var(--ferro); font-size: 20px; }   /* texto mais escuro: menos "cinza sobre cinza" */
+/* A "ficha" com os três fatos: barra laranja em cima, títulos em laranja, linhas finas entre os itens */
 .quem-fatos { border-top: 4px solid var(--laranja); }
 .quem-fatos li { padding: 20px 0; border-bottom: 1px solid #C2BDB4; }
-.quem-fatos strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 40px; line-height: 1.05; text-transform: uppercase; }
-.quem-fatos span { display: block; margin-top: 4px; color: var(--texto-suave); font-size: 16px; line-height: 1.4; }
+.quem-fatos strong { display: block; font-family: var(--fonte-titulo); font-weight: 700; font-size: 40px; line-height: 1.05; text-transform: uppercase; color: var(--laranja-escuro); }
+.quem-fatos span { display: block; margin-top: 4px; color: var(--ferro); font-size: 16px; line-height: 1.4; }
 
 /* ===== CONTATO ===== */
 .contato {
@@ -207,9 +209,12 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   max-width: var(--largura); margin: 0 auto; padding: 64px var(--lateral) 48px;
   display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 32px 48px;
 }
+/* Alinhamento: os títulos das colunas (Oficina, Contato, Horário) têm a mesma altura do logo (40px), com o texto
+   centralizado nessa altura, e o mesmo espaço embaixo. Assim o logo fica na mesma linha dos títulos e os textos de
+   baixo começam todos na mesma altura. */
 .rodape-marca img { display: block; height: 40px; width: auto; margin-bottom: 18px; }
-.rodape-marca p { max-width: 340px; line-height: 1.55; }
-.rodape-titulo { display: block; margin-bottom: 10px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
+.rodape-marca p { max-width: 340px; line-height: 1.6; }
+.rodape-titulo { display: flex; align-items: center; min-height: 40px; margin-bottom: 18px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); }
 .rodape-col p { color: #fff; line-height: 1.6; }
 .rodape-col a { border-bottom: 1px solid #55585B; transition: border-color .15s, color .15s; }
 .rodape-col a:hover { color: var(--laranja); border-bottom-color: var(--laranja); }
@@ -229,6 +234,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .topo-telefone { margin-left: auto; }
   .rodape-miolo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rodape-marca { grid-column: 1 / -1; }
+  .rodape-titulo { min-height: 0; margin-bottom: 10px; }   /* aqui o logo fica sozinho na linha de cima, não precisa alinhar */
 }
 
 /* ===== BOTÃO QUE SEGUE NA ROLAGEM ===== */
@@ -267,6 +273,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .fatos-miolo span { font-size: 13px; }
 
   .quem { grid-template-columns: 1fr; padding: 48px 16px; gap: 28px; }
+  .quem-texto { border-left-width: 4px; padding-left: 18px; }
   .quem h2 { margin-bottom: 16px; }
   .quem-texto p:last-child { font-size: 16px; }
   .quem-fatos li { padding: 14px 0; }
