@@ -1,3 +1,15 @@
+/* ===== FONTES: arquivos na pasta fonts/ (licença livre SIL OFL, baixados do Google Fonts) =====
+   Cada arquivo é "variável": um só arquivo serve para todos os pesos (400 a 700).
+   font-display: swap mostra o texto na hora com uma fonte do sistema e troca quando a fonte carrega. */
+@font-face {
+  font-family: "Oswald"; font-style: normal; font-weight: 200 700; font-display: swap;
+  src: url("fonts/oswald.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("fonts/archivo.woff2") format("woff2");
+}
+
 /* ===== VARIÁVEIS: cores, fontes e medidas num lugar só ===== */
 :root {
   --ferro: #1A1B1C;            /* preto de ferro */
