@@ -7,20 +7,20 @@
 
 Landing page da Serralheria Neves, de Marcelo Neves, serralheiro e soldador com mais de 20 anos de oficina em São José da Lapa/MG. O objetivo é simples: o cliente entender o que o serviço faz e pedir orçamento pelo WhatsApp ou por telefone.
 
-Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framework e sem build.
+Projeto feito como primeiro trabalho freelance, em HTML, CSS e um pouco de JavaScript, sem framework e sem build.
 
 ## O que tem na página
 
-- Topo com o nome e o telefone
-- Apresentação com botões de WhatsApp e ligação
-- Faixa com os pontos principais (tempo de oficina, orçamento sem custo, urgência, tipo de cliente)
+- Topo com o nome, o menu e o telefone (no computador, o topo fica preso no alto da tela durante a rolagem)
+- Apresentação com a cidade, o título e botões de WhatsApp e ligação
+- Faixa com os pontos principais (tempo de mercado, orçamento sem custo, urgência, tipo de cliente)
 - Lista de serviços
 - Como funciona (pedido, orçamento, instalação)
 - Trabalhos realizados (ainda com espaços reservados para fotos)
 - Sobre o Marcelo
-- Dúvidas frequentes (visita para medir, tipos de portão, motor, pintura, cidades atendidas)
+- Dúvidas frequentes (visita para medir, tipos de portão, pintura, cidades atendidas)
 - Contato com endereço, região atendida, horário e forma de pagamento
-- Botão flutuante de WhatsApp que acompanha a rolagem
+- Botão flutuante de WhatsApp, que aparece quando os botões verdes do topo e do Contato saem da tela
 
 ## Tecnologias
 
@@ -28,7 +28,7 @@ Projeto feito como primeiro trabalho freelance, em HTML e CSS puros, sem framewo
 - CSS3 (variáveis CSS, flexbox, grid, `clamp()`, media query para celular)
 - Fontes Oswald (títulos) e Archivo (texto), hospedadas no próprio site (licença livre SIL OFL). Não depende do Google Fonts, então o IP de quem visita não é enviado ao Google.
 
-JavaScript só no `script.js`, que anima o abrir e fechar das Dúvidas frequentes. Sem ele, as perguntas continuam funcionando, só sem animação. Ele fica num arquivo separado para a regra de segurança do site (CSP) poder bloquear qualquer script embutido no HTML.
+JavaScript só no `script.js`, que anima o abrir e fechar das Dúvidas frequentes e mostra ou esconde o botão flutuante do WhatsApp. Sem ele, tudo continua funcionando: as perguntas abrem sem animação e o botão fica sempre visível. Ele fica num arquivo separado para a regra de segurança do site (CSP) poder bloquear qualquer script embutido no HTML.
 
 ## Estrutura
 
@@ -36,7 +36,7 @@ JavaScript só no `script.js`, que anima o abrir e fechar das Dúvidas frequente
 .
 ├── index.html            # conteúdo da página
 ├── style.css             # todo o visual
-├── script.js             # animação das Dúvidas frequentes
+├── script.js             # animação das Dúvidas frequentes e botão flutuante
 ├── 404.html              # página de "endereço não encontrado"
 ├── fonts/
 │   ├── oswald.woff2      # fonte dos títulos

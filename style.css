@@ -70,18 +70,18 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 /* ===== TOPO: logo, menu e telefone ===== */
 .topo {
   background: var(--ferro); color: #fff;
-  padding: 18px max(var(--lateral), calc((100% - var(--largura)) / 2 + var(--lateral)));
+  padding: 13px max(var(--lateral), calc((100% - var(--largura)) / 2 + var(--lateral)));
   display: flex; align-items: center; gap: 16px 32px;
   border-bottom: 1px solid var(--linha-escura);     /* separa o topo do hero, que tem a mesma cor */
 }
 .marca { display: block; flex-shrink: 0; }
-.marca img { display: block; height: 40px; width: auto; }
+.marca img { display: block; height: 36px; width: auto; }
 .menu { display: flex; gap: 28px; margin-left: auto; font-size: 15px; font-weight: 500; color: var(--texto-no-escuro); }
 .menu a { white-space: nowrap; padding: 6px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
 .menu a:hover { color: #fff; border-bottom-color: var(--laranja); }
 .topo-telefone {
   display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
-  padding: 9px 16px; border: 1.5px solid var(--laranja); border-radius: 10px;
+  padding: 7px 14px; border: 1.5px solid var(--laranja); border-radius: 10px;
   font-weight: 600; font-size: 16px; transition: background-color .15s, color .15s;
 }
 .topo-telefone svg { color: var(--laranja); transition: color .15s; }
@@ -282,6 +282,14 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 }
 .rodape-base a:hover { color: #fff; }
 
+/* Computador (a partir de 1101px, onde o menu aparece): o topo fica preso no alto da tela durante a rolagem,
+   com o menu sempre à mão. As faixas escuras começam sem espaço em cima, então ganham uma margem
+   para o título não ficar colado no topo depois de clicar no menu. */
+@media (min-width: 1101px) {
+  .topo { position: sticky; top: 0; z-index: 40; }
+  .faixa-escura[id] { scroll-margin-top: 24px; }
+}
+
 /* Notebook pequeno: com 5 itens, o menu só cabe numa linha a partir de 1100px. Abaixo disso ele some
    (o botão de telefone e o flutuante do WhatsApp continuam). */
 @media (max-width: 1100px) {
@@ -298,9 +306,9 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
 
 /* ===== PÁGINA 404 (404.html): o bloco escuro ocupa a tela toda ===== */
 .pagina-erro { background: var(--ferro); }
-.pagina-erro .hero { min-height: calc(100vh - 77px); display: flex; align-items: center; }
+.pagina-erro .hero { min-height: calc(100vh - 63px); display: flex; align-items: center; }
 .pagina-erro .hero-miolo { width: 100%; }
-.pagina-erro .rotulo { color: var(--laranja); }
+.hero .rotulo { color: var(--laranja); }   /* rótulo em laranja vivo sobre o fundo escuro (topo da página e 404) */
 
 /* ===== BOTÃO QUE SEGUE NA ROLAGEM ===== */
 .zap-flutuante {
@@ -309,9 +317,12 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   min-height: 52px; padding: 0 20px; border-radius: 12px;
   background: var(--verde-zap); color: var(--verde-zap-texto);
   font-weight: 600; font-size: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  transition: background-color .15s;
+  transition: background-color .15s, opacity .25s, transform .25s, visibility .25s;
 }
 .zap-flutuante:hover { background: var(--verde-zap-hover); }
+/* O script.js esconde o botão enquanto os botões verdes do topo ou do Contato estão na tela (para não ficar duplicado).
+   Sem o script, o botão fica sempre visível. */
+.zap-flutuante.escondido { opacity: 0; transform: translateY(16px); visibility: hidden; }
 
 /* ===== CELULAR ===== */
 @media (max-width: 760px) {
@@ -322,8 +333,10 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .topo { padding: 14px 16px; }
   .marca img { height: 36px; }
   .topo-telefone { display: none; }          /* o botão flutuante já resolve no celular */
+  .pagina-erro .hero { min-height: calc(100vh - 65px); }   /* no celular o topo tem 65px de altura */
 
   .hero-miolo { padding: 40px 16px 44px; gap: 28px; }
+  .hero .rotulo { font-size: 14px; letter-spacing: .08em; }   /* cabe numa linha só em celulares de 360px */
   .hero h1 { font-size: 52px; margin-bottom: 16px; }
   .hero-texto p { font-size: 17px; margin-bottom: 24px; }
   .hero .botoes { flex-wrap: nowrap; gap: 10px; }
@@ -341,7 +354,7 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   .quem { grid-template-columns: 1fr; padding: 48px 16px; gap: 28px; }
   .quem-texto { border-left-width: 4px; padding-left: 18px; }
   .quem h2 { margin-bottom: 16px; }
-  .quem-texto p:last-child { font-size: 16px; }
+  .quem-texto p:last-of-type { font-size: 16px; }
   .quem-fatos li { padding: 14px 0; }
   .quem-fatos strong { font-size: 30px; }
   .quem-fatos span { font-size: 15px; }
@@ -388,3 +401,13 @@ h2 { font-size: clamp(40px, 6vw, 72px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* ===== ANIMAÇÕES DE ENTRADA (controladas pelo script.js) =====
+   Efeito leve de propósito: os blocos começam só 10px abaixo e transparentes, e assentam no lugar quando entram na tela.
+   Só vale quando o script colocou a classe "anima" na página: sem script, nada fica escondido.
+   --atraso faz os itens de uma mesma lista entrarem em cascata. */
+.anima .revela {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .5s ease-out, transform .7s cubic-bezier(.22, .61, .36, 1); transition-delay: var(--atraso, 0s);
+}
+.anima .revela.visivel { opacity: 1; transform: none; }
