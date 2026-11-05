@@ -41,6 +41,8 @@ JavaScript só no `script.js`, que anima o abrir e fechar das Dúvidas frequente
 ├── fonts/
 │   ├── oswald.woff2      # fonte dos títulos
 │   └── archivo.woff2     # fonte do texto
+├── fotos/
+│   └── solda-oficina.jpg       # foto provisória da seção "Quem faz" (banco de imagem, CC0)
 ├── img/
 │   ├── logo-fundo-claro.svg    # logo para fundos claros
 │   ├── logo-fundo-escuro.svg   # logo para fundos escuros (topo e rodapé do site)
@@ -84,7 +86,7 @@ Também funciona dando dois cliques no `index.html`, para abrir direto no navega
 
   O `alt` descreve o que aparece na foto, para quem usa leitor de tela e para o Google. Evite "foto 1" ou "imagem". `width` e `height` (o tamanho real da foto) evitam que a página "pule" enquanto carrega. `loading="lazy"` só baixa a foto quando a pessoa chega perto dela. Não use `lazy` na foto do topo (hero). Prefira fotos em `.jpg` ou `.webp` com até uns 300 KB cada.
 - **Trocar uma foto ou a imagem de compartilhamento:** use um nome de arquivo novo (ex.: `portao-2.jpg`). Os navegadores guardam imagens por 7 dias e o WhatsApp guarda a prévia do link por bastante tempo. Para a imagem de compartilhamento, também dá para mudar o final do endereço em `og:image` para `compartilhar.png?v=2`.
-- **Foto do Marcelo:** a seção "Marcelo Neves" está só com texto. Há um comentário no HTML explicando como adicionar uma foto, caso ele aceite.
+- **Foto da seção "Quem faz":** por enquanto é uma foto provisória de banco de imagem (`fotos/solda-oficina.jpg`, do Unsplash, licença CC0, uso livre). Quando o Marcelo mandar uma foto dele ou da oficina, troque o arquivo e o texto do `alt`. Há um comentário no HTML com o exemplo.
 
 ## Publicação
 
@@ -111,7 +113,7 @@ Antes de divulgar:
 
 Quando der:
 
-- [ ] Decidir se vai ter foto do Marcelo
+- [ ] Trocar a foto provisória da seção "Quem faz" por uma do Marcelo ou da oficina
 - [ ] Registrar o domínio e seguir os `TODO (domínio)` acima
 - [ ] Depoimentos de clientes (prints de WhatsApp, com autorização, sem número nem foto do cliente)
 - [ ] CNPJ no rodapé, se houver (procure `TODO (CNPJ)` no `index.html`)
